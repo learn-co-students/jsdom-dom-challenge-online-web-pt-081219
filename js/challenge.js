@@ -1,13 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-let counter = document.querySelector("#counter");
-let minus = document.querySelector("#minus");
-let plus = document.querySelector("#plus");
-let heart = document.querySelector("#heart");
-let likes = document.querySelector(".likes");
-let pause = document.getElementById("pause");
-let likedAry = [];
-let intervalId = null;
 
+let intervalId = null;
+let counter = document.querySelector("#counter");
 function incrementCount() {
     const current_count = parseInt(counter.innerText);
     counter.innerText = current_count + 1;
@@ -23,6 +17,7 @@ function startTimer() {
 }
 startTimer()
 
+let pause = document.getElementById("pause");
 pause.addEventListener('click', function(){
     if (intervalId) {
         stopTimer();
@@ -42,19 +37,25 @@ function getOccurrence() {
     likedAry.forEach((v) => (v === counter.innerText && count++));
     return count;
 };
+
+let likes = document.querySelector(".likes");
 function printLike(counterText) {
     let newLike = likes.appendChild(newLi());
     newLike.innerText = `${counterText} has been liked ${getOccurrence()} times`;
-}
+};
 
+let minus = document.querySelector("#minus");
 minus.addEventListener("click", function() { 
     counter.innerText = parseInt(counter.innerText, 10) - 1;
 });
 
+let plus = document.querySelector("#plus");
 plus.addEventListener("click", function() { 
     counter.innerText = parseInt(counter.innerText, 10) + 1;
 });
 
+let likedAry = [];
+let heart = document.querySelector("#heart");
 heart.addEventListener("click", function() {
     likedAry.push(`${counter.innerText}`);
     let counterText = parseInt(counter.innerText);
