@@ -44,13 +44,16 @@ function getOccurrence() {
     return count;
 };
 
-function newLi() {
+function newLi(counterText) {
+    if (counterText === parseInt(document.querySelector("#counter").innerText)) {
+        console.log(`${counterText}`)
+    };
     return document.createElement("li");
 };
 
 let likes = document.querySelector(".likes");
 function printLike(counterText) {
-    let newLike = likes.appendChild(newLi());
+    let newLike = likes.appendChild(newLi(counterText));
     newLike.innerText = `${counterText} has been liked ${getOccurrence()} times`;
 };
 
@@ -58,7 +61,7 @@ let likedAry = [];
 let heart = document.querySelector("#heart");
 heart.addEventListener("click", function() {
     likedAry.push(`${counter.innerText}`);
-    let counterText = parseInt(counter.innerText);
+    const counterText = parseInt(counter.innerText);
     printLike(counterText)
 });
 
