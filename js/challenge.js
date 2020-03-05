@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', () => {
 let counter = document.querySelector("#counter");
 let minus = document.querySelector("#minus");
 let plus = document.querySelector("#plus");
@@ -5,6 +6,32 @@ let heart = document.querySelector("#heart");
 let likes = document.querySelector(".likes");
 let pause = document.getElementById("pause");
 let likedAry = [];
+let intervalId = null;
+
+function incrementCount() {
+    const current_count = parseInt(counter.innerText);
+    counter.innerText = current_count + 1;
+};
+
+function stopTimer() {
+    clearInterval(intervalId);
+    intervalId = null;
+}
+
+function startTimer() {
+    intervalId = setInterval(incrementCount, 1000)
+}
+startTimer()
+
+pause.addEventListener('click', function(){
+    if (intervalId) {
+        stopTimer();
+        pause.innerText = "play";
+    } else {
+        startTimer();
+        pause.innerText = "pause";
+    };
+});
 
 function newLi() {
     return document.createElement("li");
@@ -20,10 +47,6 @@ function printLike(counterText) {
     newLike.innerText = `${counterText} has been liked ${getOccurrence()} times`;
 }
 
-setInterval(function tikTok() {
-    counter.innerText = parseInt(counter.innerText, 10) + 1;
-}, 1000);
-
 minus.addEventListener("click", function() { 
     counter.innerText = parseInt(counter.innerText, 10) - 1;
 });
@@ -32,13 +55,9 @@ plus.addEventListener("click", function() {
     counter.innerText = parseInt(counter.innerText, 10) + 1;
 });
 
-pause.addEventListener("click", function() {
-    
-});
-
 heart.addEventListener("click", function() {
     likedAry.push(`${counter.innerText}`);
-    let counterText = counter.innerText;
+    let counterText = parseInt(counter.innerText);
     printLike(counterText)
 });
 
@@ -51,4 +70,9 @@ commentForm.addEventListener("submit", function(a){
     var d=document.querySelector(".comments")
     e=document.createElement("p");
     e.innerText=c,d.appendChild(e)
+});
+
+heart.addEventListener("click", function() {
+    var time = counter.innerText 
+});
 });
