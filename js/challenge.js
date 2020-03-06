@@ -7,23 +7,23 @@ function incrementCount() {
     counter.innerText = current_count + 1;
 };
 
-function stopTimer() {
+function stopCounter() {
     clearInterval(intervalId);
     intervalId = null;
 };
 
-function startTimer() {
+function startCounter() {
     intervalId = setInterval(incrementCount, 1000)
 };
-startTimer();
+startCounter();
 
 let pause = document.getElementById("pause");
 pause.addEventListener('click', function(){
     if (intervalId) {
-        stopTimer();
+        stopCounter();
         pause.innerText = " play ";
     } else {
-        startTimer();
+        startCounter();
         pause.innerText = "pause";
     };
 });
@@ -44,25 +44,19 @@ function getOccurrence() {
     return count;
 };
 
-function newLi(counterText) {
-    if (counterText === parseInt(document.querySelector("#counter").innerText)) {
-        console.log(`${counterText}`)
-    };
-    return document.createElement("li");
-};
-
 let likes = document.querySelector(".likes");
-function printLike(counterText) {
-    let newLike = likes.appendChild(newLi(counterText));
+function newLi(counterText) {
+    let newLike = likes.appendChild(document.createElement('li'));
     newLike.innerText = `${counterText} has been liked ${getOccurrence()} times`;
 };
+
 
 let likedAry = [];
 let heart = document.querySelector("#heart");
 heart.addEventListener("click", function() {
-    likedAry.push(`${counter.innerText}`);
-    const counterText = parseInt(counter.innerText);
-    printLike(counterText)
+    let counterText = parseInt(counter.innerText);
+    likedAry.push(`${counterText}`);
+    newLi(counterText);
 });
 
 let commentForm = document.getElementsByTagName("form")[0];
