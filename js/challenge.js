@@ -3,7 +3,7 @@ const plus = document.getElementById("plus")
 const minus = document.getElementById("minus")
 const heart = document.getElementById("heart")
 const pause = document.getElementById("pause")
-const number = {}
+const submitComment = document.getElementById("submit")
 
 document.addEventListener('DOMContentLoaded', (event) => {
     let interval = setInterval(increment, 1000);
@@ -20,13 +20,26 @@ minus.addEventListener('click', (event) => {
 heart.addEventListener('click', (event) => {
     const likes = document.querySelector('.likes')
     const li = document.createElement('li')
-    likes.appendChild()
-    li.innerText = `${counter.innerText} was liked ${number} times`
+    let number = 1
+
+    if (likes.innerText.includes(`${counter.innerText}`)){
+        const updateLike = document.getElementById(`${counter.innerText}`)
+        updateLike.querySelector('span').innerText++
+    } else {
+        likes.appendChild(li)
+        li.setAttribute("id", counter.innerText)
+        li.innerHTML = `${counter.innerText} was liked <span> 1 </span> time(s)`
+    }
+})
+
+submitComment.addEventListener('click', (event) => {
+  event.preventDefault();  
 })
 
 function increment(){
     counter.innerText++
 }
+
 
 
 
