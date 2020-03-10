@@ -1,15 +1,27 @@
-let counter = document.getElementById("counter").innerText
+const counter = document.getElementById("counter")
+const plus = document.getElementById("plus")
+const minus = document.getElementById("minus")
+const heart = document.getElementById("heart")
+const pause = document.getElementById("pause")
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    incrementBySecond();
+    let interval = setInterval(increment, 1000);
 })
 
-function incrementBySecond(){
-    for (let counter = document.getElementById("counter").innerText; counter < 60; setInterval(function(){ ++counter }, 1000)){
-        return counter
-    }
-    // let interval = setInterval(function(){ ++counter }, 1000);
+plus.addEventListener('click', (event) => {
+    increment();
+})
 
+minus.addEventListener('click', (event) => {
+    counter.innerText--;
+})
+
+heart.addEventListener('click', (event) => {
+    
+})
+
+function increment(){
+    counter.innerText++
 }
 
 
