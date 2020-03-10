@@ -1,14 +1,15 @@
+
+
+document.addEventListener('DOMContentLoaded', (event) => {
+
 const counter = document.getElementById("counter")
 const plus = document.getElementById("plus")
 const minus = document.getElementById("minus")
 const heart = document.getElementById("heart")
 const pause = document.getElementById("pause")
 const submitComment = document.getElementById("submit")
-
-document.addEventListener('DOMContentLoaded', (event) => {
-    let interval = setInterval(increment, 1000);
-})
-
+let interval = setInterval(increment, 1000);
+    
 plus.addEventListener('click', (event) => {
     increment();
 })
@@ -32,6 +33,19 @@ heart.addEventListener('click', (event) => {
     }
 })
 
+pause.addEventListener('click', (event) => {
+    if (pause.innerText === "pause"){
+        pause.innerText = "resume"
+        clearInterval(interval)
+        pauseAll();
+    } else {
+        pause.innerText = "pause"
+        interval = setInterval(increment, 1000);
+        resumeAll();
+    }
+    
+})
+
 submitComment.addEventListener('click', (event) => {
   event.preventDefault();  
 })
@@ -40,6 +54,22 @@ function increment(){
     counter.innerText++
 }
 
+function pauseAll(){
+    counter.disable = true;
+    plus.disable = true;
+    minus.disable = true;
+    heart.disable = true;
+    submitComment.disable = true;
+}
+
+function resumeAll(){ 
+    counter.disable = false;
+    plus.disable = false;
+    minus.disable = false;
+    heart.disable = false;
+    submitComment.disable = false; 
+}
+})
 
 
 
