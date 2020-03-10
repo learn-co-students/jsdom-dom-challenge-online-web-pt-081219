@@ -21,7 +21,6 @@ minus.addEventListener('click', (event) => {
 heart.addEventListener('click', (event) => {
     const likes = document.querySelector('.likes')
     const li = document.createElement('li')
-    let number = 1
 
     if (likes.innerText.includes(`${counter.innerText}`)){
         const updateLike = document.getElementById(`${counter.innerText}`)
