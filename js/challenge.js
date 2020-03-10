@@ -3,6 +3,7 @@ const plus = document.getElementById("plus")
 const minus = document.getElementById("minus")
 const heart = document.getElementById("heart")
 const pause = document.getElementById("pause")
+const number = {}
 
 document.addEventListener('DOMContentLoaded', (event) => {
     let interval = setInterval(increment, 1000);
@@ -17,7 +18,10 @@ minus.addEventListener('click', (event) => {
 })
 
 heart.addEventListener('click', (event) => {
-    
+    const likes = document.querySelector('.likes')
+    const li = document.createElement('li')
+    likes.appendChild()
+    li.innerText = `${counter.innerText} was liked ${number} times`
 })
 
 function increment(){
