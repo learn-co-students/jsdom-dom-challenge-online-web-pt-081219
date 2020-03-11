@@ -46,9 +46,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
         event.preventDefault();  
         const form = document.getElementById('comment-form')
         const newComment = document.getElementById('comment-input')
-        const li = document.createElement('li')
-        form.appendChild(li)
-        li.innerText = newComment.value 
+        const p = document.createElement('p')
+        form.appendChild(p)
+        p.innerText = newComment.value 
+        form.reset();
     })
 
     function increment(){
@@ -56,19 +57,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     function pauseAll(){
-        counter.disable = true;
-        plus.disable = true;
-        minus.disable = true;
-        heart.disable = true;
-        submitComment.disable = true;
+        counter.disabled = true;
+        plus.disabled = true;
+        minus.disabled = true;
+        heart.disabled = true;
+        submitComment.disabled = true;
     }
 
     function resumeAll(){ 
-        counter.disable = false;
-        plus.disable = false;
-        minus.disable = false;
-        heart.disable = false;
-        submitComment.disable = false; 
+        counter.disabled = false;
+        plus.disabled = false;
+        minus.disabled = false;
+        heart.disabled = false;
+        submitComment.disabled = false; 
     }
 })
 
