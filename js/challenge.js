@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const minusClick = document.getElementById("minus");
   const heartClick = document.getElementById("heart");
   const pauseClick = document.getElementById("pause");
+  const submitComment = document.getElementById("submit")
   let interval = setInterval(increment, 1000);
 
   // Visually increment counter by 1
