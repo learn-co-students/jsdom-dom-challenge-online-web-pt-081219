@@ -5,7 +5,7 @@
     const heart =         document.getElementById('heart');
     const pause =         document.getElementById('pause');
     const submitComment = document.getElementById('submit');
-    let isPaused =      false;
+    let isPaused =        false;
     let intervalID;
 
     function startCounter() {
@@ -26,7 +26,6 @@
 
     function pauseTimer() {
         if (isPaused === false) {
-            // debugger
             stopCounter();
             isPaused = true;
             pause.innerText = 'resume';
@@ -48,27 +47,33 @@
     function like() {
         const likes = document.querySelector('.likes');
         let li = document.createElement('li');
-        likes.appendChild(li);
-        li.innerText = `${counter.innerText}`;
+        if (likes.innerText.includes(`${counter.innerText}`)){
+            alreadyLiked = document.getElementById(`${counter.innerText}`);
+            alreadyLiked.querySelector('span').innerText++;
+        } else {
+            likes.appendChild(li);
+            li.setAttribute('id', `${counter.innerText}`)
+            li.innerHTML = `${counter.innerText} has <span>1</span> like(s)`;
+        }
     };
-    // function like() {
-    //     debugger
-    //     likedNumber = counter.innerText;
-    //     let li = document.createElement('li');
-    //     if (likes.innnerText.includes(`${likedNumber}`)){
-    //         let hasLike = document.getElementById(`${likedNumber}`)
-    //         hasLike.querySelector('span').innerText++
-    //     } else {
-    //         li.setAttribute('id', likedNumber); 
-    //         li.innerHTML = `${likedNumber} was liked <span>1</span> time(s)`;
-    //         likes.appendChild(li);
-    //     }
-    // };
+    
+    function addComment(event = false){
+        if (event){
+            event.preventDefault();
+        }
+        let div = document.getElementById('list');
+        let ul = document.createElement('ul');
+        div.appendChild(ul);
+        let li = document.createElement('li');
+        ul.appendChild(li);
+        let comment = document.getElementById('comment-input');
+        li.innerText = comment.value;
+    };
 
     startCounter();
     plus.onclick = incrementTimer;
     minus.onclick = decrementTimer;
     pause.onclick = pauseTimer;
     heart.onclick = like;
-
+    submitComment.onclick = addComment;
 });
